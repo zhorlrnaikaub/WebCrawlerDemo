@@ -7,7 +7,6 @@ import java.util.concurrent.ScheduledExecutorService;
 
 /**
  * @author 张俊俏
- * Web Crawler Demo仿造网上的一个例子写的抓取qq空间头像的网络爬虫java+maven程序，还没有实现的是让这个程序一直跑着，一直下载着头像，多线程，线程池这块还不太熟
  *
  */
  

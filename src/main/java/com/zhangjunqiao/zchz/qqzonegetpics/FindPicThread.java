@@ -30,7 +30,7 @@ public class FindPicThread implements Runnable {
 			final String qq = QQUtil.generateQQNum();
 			final String qqLogoUrl = QQUtil.generateLogoUrl(qq);
 			final String path = QQUtil.generatePath(qq);
-
+			System.out.println("要抓取的qq号码为" + qq );
 			HttpGet httpGet = new HttpGet(qqLogoUrl);
 			// 模拟谷歌 爬虫
 			httpGet.setHeader("User-Agent",
@@ -40,6 +40,7 @@ public class FindPicThread implements Runnable {
 				HttpResponse response = httpClient.execute(httpGet);
 				HttpEntity entity = response.getEntity();
 				// entity不为空,且不是默认的图片,则保存
+				//那为啥2055是代表默认名片呢？
 				if (entity != null && entity.getContentLength() != 2055) {
 					File storeFile = new File(path);
 					FileOutputStream output = new FileOutputStream(storeFile);
@@ -49,6 +50,7 @@ public class FindPicThread implements Runnable {
 					while ((j = instream.read(b)) != -1) {
 						output.write(b, 0, j);
 					}
+					//上面这几步应该是在输出图片，不过还没看懂呢
 					instream.close();
 					output.flush();
 					output.close();
