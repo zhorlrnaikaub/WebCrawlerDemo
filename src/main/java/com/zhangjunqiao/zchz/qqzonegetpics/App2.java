@@ -22,8 +22,14 @@ public class App2 {
 
 	public static void main(String[] args) throws ClientProtocolException,
 			IOException {
-		GetUrlContent();
-		//PostUrlContent("");
+		// GetUrlContent();
+		// PostUrlContent("");
+		Student student = new Student(2, "张俊俏", "侯德光", "浙大");
+		System.out.println("转化为JSON格式： "
+				+ MapperTemplate.writeValueAsString(student));
+		String json1 = "{\"id\":2,\"name\":\"白芳芳\",\"address\":\"中钞\",\"teacherName\":\"侯哥\"}";
+		Student stu = MapperTemplate.mapper(json1, Student.class);
+		System.out.println("转化为Student类：" + stu.getName());
 	}
 
 	public static void GetUrlContent() throws ClientProtocolException,
@@ -44,13 +50,12 @@ public class App2 {
 		System.out.println("responseStr now is " + responseStr);// 网页实体内容
 	}
 
-	public static void PostUrlContent(String requestObj) throws ClientProtocolException,
-			IOException {
+	public static void PostUrlContent(String requestObj)
+			throws ClientProtocolException, IOException {
 		// String body = new ObjectMapper().writeValueAsString(requestObj);
 		Response response = Request
 				.Post("http://www.cnblogs.com/loveyakamoz/archive/2011/07/21/2112804.html")
 				.bodyString(requestObj, ContentType.APPLICATION_JSON).execute();
-
 
 		HttpResponse resultResponse = response.returnResponse();
 		System.out.println(resultResponse.toString());
