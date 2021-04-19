@@ -23,7 +23,7 @@ public class App2 {
 	public static void main(String[] args) throws ClientProtocolException,
 			IOException {
 		// GetUrlContent();
-		// PostUrlContent("");
+		// PostUrlContent(""); 
 		Student student = new Student(2, "张俊俏", "侯德光", "浙大");
 		System.out.println("转化为JSON格式： "
 				+ MapperTemplate.writeValueAsString(student));
